@@ -1,3 +1,5 @@
-const Colores = require('./colores.model');
+const Color = require('./color.model');
+const User = require('./user.model');
 
-module.exports.Colores = Colores;
+module.exports.Color = Color;
+module.exports.User = User;

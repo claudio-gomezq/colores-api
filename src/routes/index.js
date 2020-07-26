@@ -1,3 +1,5 @@
-const coloresRouter = require('./colores.route');
+const colorRouter = require('./colores.route');
+const authRouter = require('./auth.route');
 
-module.exports.coloresRouter = coloresRouter;
+module.exports.colorRouter = colorRouter;
+module.exports.authRouter = authRouter;
