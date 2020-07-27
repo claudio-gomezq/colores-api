@@ -5,7 +5,7 @@ const cors = require('cors');
 const passport = require('./src/auth/auth');
 const jsonToXml = require('./src/middlewares/json-to-xml.middleware');
 
-const {colorRouter, authRouter} = require('./src/routes');
+const {colorRouter, authRouter, docsRouter} = require('./src/routes');
 const app = express();
 
 const init = require('./src/db/init')
@@ -19,10 +19,21 @@ app.use(cookieParser());
 app.use(passport.initialize());
 app.use(jsonToXml);
 
-//app.use(express.static(path.join(__dirname, 'public')));
-//app.use('/', indexRouter);
+app.get('/', (req, res) => {
+    res.redirect('/v1/docs');
+});
 
 app.use('/v1/colores', colorRouter);
 app.use('/v1/auth', authRouter);
+app.use('/v1', docsRouter);
+
+
+//Global error handler
+app.use((err, req, res, next) => {
+    if (!err) {
+        return next();
+    }
+    res.status(500).json({message: '500: Internal server error'});
+});
 
 module.exports = app;

@@ -6,11 +6,11 @@ const {body} = require('express-validator');
 
 const loginValidation = [
     body('email').exists().isEmail().normalizeEmail(),
-    body('password').exists().isLength({min: 6}),
+    body('password').exists(),
 ];
 
 const registerValidation = [
-    ...loginValidation,
+    body('email').exists().isEmail().normalizeEmail(),
     body('password').exists().isLength({min: 6}),
     body('type').exists().isIn(['admin', 'normal']),
 ];
@@ -54,7 +54,7 @@ module.exports.login = async function (req, res, _) {
         return res.status(400).sendData({message: 'Contraseña incorrecta'});
     }
 
-    const token = jwt.sign({sub: user.id}, 'top_secret');
+    const token = jwt.sign({sub: user.id}, 'top_secret'); //TODO cambiar en produccion
 
 
     res.sendData({
