@@ -10,9 +10,8 @@ const options = {
         openapi: "3.0.0",
         info: {
             title: "Colores API",
-            version: "1.0.0",
-            description:
-                "un proyecto",
+            version: "0.0.1",
+            description: "Api que permite gestionar una lista de colores",
             contact: {
                 name: "Claudio Gomez",
                 email: "claudio.gomezquidel@gmail.com"
@@ -20,7 +19,7 @@ const options = {
         },
         servers: [
             {
-                url: "http://localhost:3000/api/v1"
+                url: "http://localhost:3000/v1"
             }
         ]
     },
